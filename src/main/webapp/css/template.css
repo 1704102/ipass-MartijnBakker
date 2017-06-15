@@ -1,0 +1,71 @@
+body{
+    background-image: url("images/Rosetti.jpg");
+}
+
+.header{
+    background-color: gray;
+    display: block;
+    width: 80%;
+    margin: auto;
+}
+
+.header div{
+    display: inline-block;
+    background-color: beige;
+    padding: 10px;
+    margin: 2px;
+}
+
+.header div:hover{
+    background-color: aquamarine;
+}
+
+.content{
+    background-color: #8e8889;
+    width: 80%;
+    margin: auto;
+}
+
+#loginBlock{
+    display: table;
+    margin: 0 auto;
+}
+
+#loginLeft{
+    display: inline-block;
+}
+
+#loginLeft div{
+    display: block;
+    width: 100px;
+}
+
+#loginRight{
+    display: inline-block;
+}
+
+#loginRight input{
+    display: block;
+    width: 100px;
+}
+
+#login{
+    display: block;
+    width: 200px;
+}
+
+#workerLeft{
+    display: inline-block;
+}
+
+#workerLeft div{
+    display: block;
+}
+
+#workerRight{
+    display: inline-block;
+}
+
+#workerRight div{
+    display: block;
+}
