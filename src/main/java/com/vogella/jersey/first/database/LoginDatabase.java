@@ -22,6 +22,7 @@ public class LoginDatabase extends DatabaseHelper {
                 while (s.next()){
                     if (username.equals(s.getString("username"))){
                         if (password.equals(s.getString("wachtwoord"))){
+                            int id = s.getInt("id");
                             String voornaam = s.getString("voornaam");
                             String achternaam = s.getString("achternaam");
                             String functie = s.getString("functie");
@@ -30,7 +31,7 @@ public class LoginDatabase extends DatabaseHelper {
                             String adres = s.getString("adres");
                             String aangenomen = s.getString("aangenomen");
 
-                            return new User(username, voornaam , achternaam, functie, geboorteDatum, email, adres, aangenomen);
+                            return new User(id, username, voornaam , achternaam, functie, geboorteDatum, email, adres, aangenomen, password);
                         }
                     }
                 }

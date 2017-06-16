@@ -4,6 +4,7 @@ package com.vogella.jersey.first.Model;
  * Created by marti on 13-6-2017.
  */
 public class User {
+    private int id;
     private String username;
     private String voornaam;
     private String achternaam;
@@ -12,8 +13,10 @@ public class User {
     private String email;
     private String adres;
     private String aangenomen;
+    private String password;
 
-    public User(String username, String voornaam, String achternaam, String functie, String geboorteDatum, String email, String adres, String aangenomen) {
+    public User(int id, String username, String voornaam, String achternaam, String functie, String geboorteDatum, String email, String adres, String aangenomen, String password) {
+        this.id = id;
         this.username = username;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
@@ -22,7 +25,9 @@ public class User {
         this.email = email;
         this.adres = adres;
         this.aangenomen = aangenomen;
+        this.password = password;
     }
+    public int getId(){return id;}
 
     public String getUsername() {
         return username;
@@ -54,5 +59,9 @@ public class User {
 
     public String getAangenomen() {
         return aangenomen;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

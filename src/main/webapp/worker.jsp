@@ -8,7 +8,7 @@
 <div class="header">
 
     <div id="Home" onclick="changePage('index.jsp')">Home</div>
-    <div id="Rooster" onclick="changePage('rooster.jsp')">Home</div>
+    <div id="Rooster" onclick="changePage('rooster.jsp')">Rooster</div>
     <div id="Logout" onclick="logout()">logout</div>
 
 </div>
@@ -33,7 +33,7 @@
     </div>
 
     <script>
-        var user = JSON.parse(localStorage.getItem("login"));
+        var user = JSON.parse(sessionStorage.getItem("login"));
         $("#name").append(user.voornaam + " " + user.achternaam);
         $("#functie").append(user.functie);
         $("#geboorteDatum").append(user.geboortedatum);

@@ -26,6 +26,7 @@ public class LoginResource {
         User user = dat.checkLogin(username, password);
         if(user != null) {
             JsonObjectBuilder job = Json.createObjectBuilder();
+            job.add("id", user.getId());
             job.add("username", user.getUsername());
             job.add("voornaam", user.getVoornaam());
             job.add("achternaam", user.getAchternaam());
@@ -34,6 +35,7 @@ public class LoginResource {
             job.add("email", user.getEmail());
             job.add("adres", user.getAdres());
             job.add("aangenomen", user.getAangenomen());
+            job.add("password", user.getPassword());
 
             jab.add(job);
             JsonArray array = jab.build();
