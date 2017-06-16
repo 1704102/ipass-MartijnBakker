@@ -8,7 +8,8 @@
 <div class="header">
 
   <div id="Home" onclick="changePage('index.jsp')">Home</div>
-  <div id="Login"onclick="changePage('login.jsp')">Reserveren</div>
+  <div id="Login"onclick="changePage('login.jsp')">Login</div>
+  <div id="Reserveren"onclick="changePage('Reserveren.jsp')">reserveren</div>
 
 </div>
 
