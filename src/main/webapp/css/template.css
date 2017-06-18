@@ -1,23 +1,69 @@
 body{
     background-image: url("images/Rosetti.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .header{
-    background-color: gray;
-    display: block;
+    display: table;
     width: 80%;
     margin: auto;
 }
-
-.header div{
+.login{
     display: inline-block;
-    background-color: beige;
-    padding: 10px;
-    margin: 2px;
+    background: -webkit-linear-gradient(top, #fff95e, #ff1831);
+    background: -o-linear-gradient(top, #fff95e, #ff1831);
+    background: -moz-linear-gradient(top, #fff95e, #ff1831);
+    background: linear-gradient(top, #fff95e, #ff1831);
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
 }
 
-.header div:hover{
-    background-color: aquamarine;
+.login:hover{
+    cursor: pointer;
+}
+
+.logout{
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #fff95e, #ff1831);
+    background: -o-linear-gradient(top, #fff95e, #ff1831);
+    background: -moz-linear-gradient(top, #fff95e, #ff1831);
+    background: linear-gradient(top, #fff95e, #ff1831);
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+}
+
+.logout:hover{
+    cursor: pointer;
+}
+
+.Rosetti{
+    text-align: center;
+    display: inline-block;
+    width: 60%;
+}
+.hrefBlock{
+    display: table;
+    width: 100%;
+    margin: auto    ;
+    background: -webkit-linear-gradient(left, #ff990c, #ff0009);
+    background: -o-linear-gradient(right, #ff990c, #ff0009);
+    background: -moz-linear-gradient(right, #ff990c, #ff0009);
+    background: linear-gradient(right, #ff990c, #ff0009);
+
+}
+.hrefBlock div{
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    margin: 3px;
+}
+
+.hrefBlock div:hover{
+    background-color: white;
+    cursor: pointer;
 }
 
 .content{

@@ -26,7 +26,7 @@ public class RoosterResource {
         JsonArrayBuilder jab = Json.createArrayBuilder();
         RoosterDatabase dat = new RoosterDatabase();
         ArrayList<Inroostering> rooster = dat.getRooster(id);
-        for(int i = 0; i < rooster.size(); i++) {
+        for (int i = 0; i < rooster.size(); i++) {
             JsonObjectBuilder job = Json.createObjectBuilder();
             job.add("timeB_year", rooster.get(i).getDateB_year());
             job.add("timeB_month", rooster.get(i).getDateB_month());
@@ -39,7 +39,7 @@ public class RoosterResource {
             jab.add(job);
         }
 
-        JsonArray array=jab.build();
+        JsonArray array = jab.build();
         System.out.println(array.toString());
         return array.toString();
         }

@@ -63,8 +63,16 @@
 <body>
 
 <div class="header">
-    <div id="Home" onclick="changePage('index.jsp')">Home</div>
-    <div id="Login" onclick="changePage('login.jsp')">Reserveren</div>
+    <div class="headerBlock">
+        <div class="Rosetti"><h1>Rosetti</h1></div>
+        <div class="Logout" onclick="logout()">logout</div>
+    </div>
+
+    <div class="hrefBlock">
+        <div onclick="changePage('worker.jsp')">Home</div>
+        <div onclick="changePage('rooster.jsp')">Rooster</div>
+        <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+    </div>
 </div>
 
 <div id="content">
@@ -81,6 +89,10 @@
 <script>
     function changePage(page) {
         document.location.href = page;
+    }
+    function logout() {
+        sessionStorage.removeItem("login")
+        document.location.href = "index.jsp";
     }
 </script>
 

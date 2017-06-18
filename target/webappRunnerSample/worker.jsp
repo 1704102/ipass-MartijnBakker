@@ -4,13 +4,17 @@
     <link type="text/css" rel="stylesheet" href="css/template.css">
 </head>
 <body>
-
 <div class="header">
+    <div class="headerBlock">
+        <div class="Rosetti"><h1>Rosetti</h1></div>
+        <div class="Logout" onclick="logout()">logout</div>
+    </div>
 
-    <div id="Home" onclick="changePage('index.jsp')">Home</div>
-    <div id="Rooster" onclick="changePage('rooster.jsp')">Rooster</div>
-    <div id="Logout" onclick="logout()">logout</div>
-
+    <div class="hrefBlock">
+        <div onclick="changePage('worker.jsp')">Home</div>
+        <div onclick="changePage('rooster.jsp')">Rooster</div>
+        <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+    </div>
 </div>
 
 <div class="content">
@@ -47,7 +51,8 @@
 <script>
 
     function logout() {
-
+        sessionStorage.removeItem("login")
+        document.location.href = "index.jsp";
     }
 
     function changePage(page) {

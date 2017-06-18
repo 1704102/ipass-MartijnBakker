@@ -6,11 +6,16 @@
 <body>
 
 <div class="header">
+  <div class="headerBlock">
+    <div class="Rosetti"><h1>Rosetti</h1></div>
+    <div class="login" onclick="changePage('login.jsp')">Login</div>
+  </div>
 
-  <div id="Home" onclick="changePage('index.jsp')">Home</div>
-  <div id="Login"onclick="changePage('login.jsp')">Login</div>
-  <div id="Reserveren"onclick="changePage('Reserveren.jsp')">reserveren</div>
+  <div class="hrefBlock">
+  <div onclick="changePage('index.jsp')">Home</div>
 
+  <div onclick="changePage('Reserveren.jsp')">reserveren</div>
+  </div>
 </div>
 
 <script>

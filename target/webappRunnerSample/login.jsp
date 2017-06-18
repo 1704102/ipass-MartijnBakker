@@ -6,10 +6,16 @@
 <body>
 
 <div class="header">
+    <div class="headerBlock">
+        <div class="Rosetti"><h1>Rosetti</h1></div>
+        <div class="login" onclick="changePage('login.jsp')">Login</div>
+    </div>
 
-    <div id="Home" onclick="changePage('index.jsp')">Home</div>
-    <div id="Reserveren" onclick="changePage('reserveren.jsp')">Reserveren</div>
+    <div class="hrefBlock">
+        <div onclick="changePage('index.jsp')">Home</div>
 
+        <div onclick="changePage('Reserveren.jsp')">reserveren</div>
+    </div>
 </div>
 <script>if (sessionStorage.getItem("login") != null) {
     user = sessionStorage.getItem("login");
@@ -53,7 +59,7 @@
 
     function autoLogin() {
         if (sessionStorage.getItem("login") != null) {
-            user = sessionStorage.getItem("login");
+            var user = JSON.parse(sessionStorage.getItem("login"));
             $.get("http://localhost:8080/rest/login/" + user.username + "/" + user.password, function (data) {
                 document.location.href = 'worker.jsp'
 

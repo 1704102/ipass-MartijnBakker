@@ -25,7 +25,6 @@ public class DatabaseHelper {
     }
 
     public ResultSet select(String query){
-        connect();
         ResultSet r = null;
         try {
             Statement s = connection.createStatement();
@@ -38,7 +37,6 @@ public class DatabaseHelper {
     }
 
     public void delete(String query){
-        connect();
         Statement s = null;
         try {
             s = connection.createStatement();
@@ -46,7 +44,6 @@ public class DatabaseHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        disconnect();
     }
 
     public void insert(String query){

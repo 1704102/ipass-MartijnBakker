@@ -22,6 +22,7 @@ public class RoosterDatabase extends DatabaseHelper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        disconnect();
         return rooster;
     }
 }
