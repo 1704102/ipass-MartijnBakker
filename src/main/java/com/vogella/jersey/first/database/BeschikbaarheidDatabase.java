@@ -1,5 +1,6 @@
 package com.vogella.jersey.first.database;
 
+
 import armdb.QueryResult;
 import com.vogella.jersey.first.Model.Beschikbaarheid;
 
