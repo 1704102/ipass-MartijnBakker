@@ -80,7 +80,7 @@
     function postData() {
         var data = $("#voornaam").val() + "," + $("#achternaam").val() + "," + $("#mail").val() + "," + $("#personen").val() + "," + $("#date").val() + "," + $("#time").val();
         $.ajax({
-            url: "http://localhost:8080/rest/reserveren/" + data,
+            url: "https://ipassmartijnbakker.herokuapp.com/rest/reserveren/" + data,
             type: 'put',
             dataType: 'text'
         });

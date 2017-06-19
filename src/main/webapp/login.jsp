@@ -19,7 +19,7 @@
 </div>
 <script>if (sessionStorage.getItem("login") != null) {
     user = sessionStorage.getItem("login");
-    $.get("http://localhost:8080/rest/login/" + user.username + "/" + user.password, function (data) {
+    $.get("https://ipassmartijnbakker.herokuapp.com/rest/login/" + user.username + "/" + user.password, function (data) {
         document.location.href = 'worker.jsp'
 
     });
@@ -43,7 +43,7 @@
 
 <script>
     function login() {
-        $.get("http://localhost:8080/rest/login/" + $("#username").val() + "/" + $("#password").val(), function (data) {
+        $.get("https://ipassmartijnbakker.herokuapp.com/rest/login/" + $("#username").val() + "/" + $("#password").val(), function (data) {
             if (data == null) {
                 $("#error").css("display", "block")
             } else {
@@ -60,7 +60,7 @@
     function autoLogin() {
         if (sessionStorage.getItem("login") != null) {
             var user = JSON.parse(sessionStorage.getItem("login"));
-            $.get("http://localhost:8080/rest/login/" + user.username + "/" + user.password, function (data) {
+            $.get("https://ipassmartijnbakker.herokuapp.com/rest/login/" + user.username + "/" + user.password, function (data) {
                 document.location.href = 'worker.jsp'
 
             });

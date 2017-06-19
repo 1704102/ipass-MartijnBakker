@@ -43,7 +43,7 @@ function previous() {
 function createTable() {
     $("#table").empty();
     $("#table").append("<tr><th>werknemer</th><th>inroostering</th></tr>");
-    $.get("http://localhost:8080/rest/inrooster/employees", function (data) {
+    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/employees", function (data) {
         for(var dat in data){
             var user = data[dat];
             $("#table").append("<tr><td>" + user.name + "</td><td>" +
@@ -66,7 +66,7 @@ function createTable() {
 function filltable() {
     dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date.getDate();
     dateE = date2.getFullYear() + "-" + (parseInt(date2.getMonth()) + 1) + "-" + date2.getDate();
-    $.get("http://localhost:8080/rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
+    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
         console.log(data);
         console.log(dateB);
         console.log(dateE);
@@ -90,14 +90,14 @@ function setEditDiv(event) {
     sessionStorage.setItem("id", id);
     $("#id").append(id);
     console.log(id);
-    $.get("http://localhost:8080/rest/inrooster/" + id, function (data) {
+    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/" + id, function (data) {
         console.log(data);
         $("#editHeader").append(data[0].name);
         $("#editTime").append(date1 + " " + month_of_year[date.getMonth()] + " " + date.getFullYear());
     });
     dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date1;
     sessionStorage.setItem("time", dateB);
-    $.get("http://localhost:8080/rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
+    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
         $("#timeB").val(data[0].timeB_time);
         $("#timeE").val(data[0].timeE_time);
     })
@@ -112,7 +112,7 @@ function saveData() {
     dateC2 = date1 + " " + time2+":00";
 
     $.ajax({
-        url: "http://localhost:8080/rest/inrooster/save/" + id + "/" + dateC1 + "/" + dateC2    ,
+        url: "https://ipassmartijnbakker.herokuapp.com/rest/inrooster/save/" + id + "/" + dateC1 + "/" + dateC2    ,
         type: 'put',
         dataType: 'text'
     });
