@@ -18,7 +18,7 @@ public class RoosterDatabase extends DatabaseHelper {
         QueryResult s = select(String.format("select * from inroostering where medewerkerId = %d", id));
         try {
             while (s.nextFlag()) {
-                rooster.add(new Inroostering(s.getValue("tijdB"), s.getValue("tijdE")));
+                rooster.add(new Inroostering(s.getValue("tijdB").replace(":00", ""), s.getValue("tijdE").replace(":00", "")));
             }
         } catch (Exception e) {
             e.printStackTrace();

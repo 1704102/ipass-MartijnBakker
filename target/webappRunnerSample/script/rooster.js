@@ -1,5 +1,6 @@
 date = new Date();
 month_of_year = ["Januari", "Februari", "March", "April", "May", "June", "Juli", "August", "September", "Oktober", "November", "December"];
+days_of_the_week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 month = date.getMonth();
 year = date.getFullYear();
 
@@ -20,15 +21,41 @@ function getRooster() {
 
 }
 
-function makeCalender() {
+function setDate() {
     $("#date").empty();
+    var Smonth = month_of_year[month];
+    $("#date").append(year + " " + Smonth);
+}
+
+function makeCalender() {
     $("#Calender").empty();
     var rooster = getRooster();
     var calender = $("#Calender");
     var Smonth = month_of_year[month];
-    $("#date").append(year + " " + Smonth);
+    setDate();
+
+    d = new Date(date);
+    d.setDate(0);
     calender.append("<div class='row'>");
-    for (var i = 0; i < 31; i++) {
+    if(d.getDay() != 0){
+        var t= new Date(date);
+        t.setMonth(t.getMonth() - 1);
+        tD = new Date(t.getFullYear(), t.getMonth() + 1, 0, 23, 59, 59);
+
+        for( var g = d.getDay(); g > 0; g--){
+            console.log( parseInt(tD.getDate()) - (5 - parseInt(g)));
+            var temp =  parseInt(tD.getDate() - (parseInt(g))+1);
+            calender.append(
+                "<div class='tableSquare' style='background-color: #c1b9ba'>" +
+                "<div class='dateHeader'>" +
+                temp
+                + "</div><div class='time'></div>"
+                + "</div>");
+        }
+    }
+    tdD = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59);
+    console.log("day =" + d.getDay());
+    for (var i = d.getDay(); i < (tdD.getDate() + d.getDay()); i++) {
         if ((i % 7) == 0) {
             calender.append("</div>");
             calender.append("<div class='row'>");
@@ -36,8 +63,8 @@ function makeCalender() {
         calender.append(
             "<div class='tableSquare'>" +
             "<div class='dateHeader'>" +
-            (i + 1)
-            + "</div><div class='time' id='calender" + (i + 1) + "'></div>"
+            ((i - d.getDay()) + 1)
+            + "</div><div class='time' id='calender" + ((i - d.getDay()) + 1) + "'></div>"
             + "</div>")
     }
     for (data in rooster) {
@@ -49,13 +76,15 @@ function makeCalender() {
     }
 }
 
-function next() {
+function nextCalender() {
+    date.setMonth(date.getMonth() + 1)
     month = month + 1;
     if(month == 12){ month = 0; year = year + 1}
     makeCalender();
 }
-function previous() {
+function previousCalender() {
     month = month - 1;
+    date.setMonth(date.getMonth() - 1)
     if(month == -1){
         month = 11;
         year = year - 1;

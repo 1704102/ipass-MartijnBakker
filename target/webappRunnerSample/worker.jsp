@@ -10,10 +10,17 @@
         <div class="Logout" onclick="logout()">logout</div>
     </div>
 
-    <div class="hrefBlock">
+    <div id="hrefBlock" class="hrefBlock">
         <div onclick="changePage('worker.jsp')">Home</div>
         <div onclick="changePage('rooster.jsp')">Rooster</div>
         <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+        <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
+        <script>
+            var user = JSON.parse(sessionStorage.getItem("login"));
+            if(user.functie == "administrator"){
+                $("#inrooster").css("display", "inline-block");
+            }
+        </script>
     </div>
 </div>
 
@@ -33,7 +40,8 @@
             <div id="geboorteDatum"></div>
             <div id="email"></div>
             <div id="adres"></div>
-            <div id="aangenomen"></div></div>
+            <div id="aangenomen"></div>
+        </div>
     </div>
 
     <script>

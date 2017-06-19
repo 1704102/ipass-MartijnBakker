@@ -39,12 +39,12 @@
         }
         #previous{
             display: inline-block;
-            width: 100px;
+            width: 80px;
             height:20px;
         }
         #next{
             display: inline-block;
-            width: 100px;
+            width: 80px;
             height:20px;
         }
         #topbar div{
@@ -57,6 +57,15 @@
             background-color: #878787; ;
             display: table;
             margin:auto;
+        }
+        .days{
+            background-color: #878787;
+            display: table;
+            margin:auto;
+        }
+        .days div{
+            width: 118px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -72,14 +81,30 @@
         <div onclick="changePage('worker.jsp')">Home</div>
         <div onclick="changePage('rooster.jsp')">Rooster</div>
         <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+        <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
+        <script>
+            var user = JSON.parse(sessionStorage.getItem("login"));
+            if(user.functie == "administrator"){
+                $("#inrooster").css("display", "inline-block");
+            }
+        </script>
     </div>
 </div>
 
 <div id="content">
     <div id="table">
-        <div id="topbar"><input type="button" id="previous" value="previous" onclick="previous()">
+        <div id="topbar"><input type="button" id="previous" value="previous" onclick="previousCalender()">
             <div id="date"></div>
-            <input id="next" type="button" value="next" onclick="next()"></div>
+            <input id="next" type="button" value="next" onclick="nextCalender()"></div>
+    </div>
+    <div class="days">
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednessday</div>
+        <div>Tuesday</div>
+        <div>Fryday</div>
+        <div>Saturday</div>
+        <div>Sunday</div>
     </div>
     <div id="Calender"></div>
     <script>makeCalender()</script>
