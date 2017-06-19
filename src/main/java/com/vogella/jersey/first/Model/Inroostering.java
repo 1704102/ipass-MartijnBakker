@@ -4,6 +4,7 @@ package com.vogella.jersey.first.Model;
  * Created by marti on 15-6-2017.
  */
 public class Inroostering {
+    private int id;
     private String dateB_year;
     private String dateB_month;
     private String dateB_day;
@@ -13,7 +14,8 @@ public class Inroostering {
     private String dateE_day;
     private String dateE_time;
 
-    public Inroostering(String dateB, String dateE) {
+    public Inroostering(int id, String dateB, String dateE) {
+        this.id = id;
         String[] s = dateB.split(" ");
         dateB_time = s[1].replace(":00.0", "");
         String[] s1 = s[0].split("-");
