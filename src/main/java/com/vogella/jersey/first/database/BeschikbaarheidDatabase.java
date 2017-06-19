@@ -1,5 +1,6 @@
 package com.vogella.jersey.first.database;
 
+import armdb.QueryResult;
 import com.vogella.jersey.first.Model.Beschikbaarheid;
 
 import java.sql.ResultSet;
@@ -14,13 +15,13 @@ public class BeschikbaarheidDatabase extends DatabaseHelper{
         ArrayList<Beschikbaarheid> beschikbaarheid = new ArrayList();
 
         connect();
-        ResultSet s = select(String.format("select * from beschikbaarheid where medewerkerId = %d", id));
+        QueryResult s = select(String.format("select * from beschikbaarheid where medewerkerId = %d", id));
 
         try{
-            while (s.next()){
-                String day = s.getString("dag");
-                String timeB = s.getString("tijdB");
-                String timeE =  s.getString("tijdE");
+            while (s.nextFlag()){
+                String day = s.getValue("dag");
+                String timeB = s.getValue("tijdB");
+                String timeE =  s.getValue("tijdE");
 
                 beschikbaarheid.add(new Beschikbaarheid(day, timeB, timeE));
             }

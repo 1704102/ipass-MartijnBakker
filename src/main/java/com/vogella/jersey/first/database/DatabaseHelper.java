@@ -1,6 +1,11 @@
 package com.vogella.jersey.first.database;
 
 
+import armdb.ConnectHost;
+import armdb.QueryResult;
+import armdb.SQLQuery;
+import armdb.SQLUpdate;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,55 +15,60 @@ import java.sql.Statement;
  * Created by marti on 20-1-2017.
  */
 public class DatabaseHelper {
-
-
+    String fileURL="http://sharp-band.nl/Scripts/handleSQL.php";   //URL of 'handleSQL.php' file
+    String host="sharp-band.nl.mysql";                               //server host name
+    String user="sharp_band_nl";                                            //username
+    String pass="klbxjmpv526f";                                        //password
+    String DBName="sharp_band_nl";                                        //database name
+    //make connection
+    ConnectHost con;
 
     Connection connection;
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");;
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ipass?verifyServerCertificate=true&useSSL=false&requireSSL=false","root","klbxjmpv526f");
+            con=new ConnectHost(fileURL, host, user, pass, DBName);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public ResultSet select(String query){
-        ResultSet r = null;
+    public QueryResult select(String query){
+        SQLQuery query1=new SQLQuery(con);
+        QueryResult s = null;
         try {
-            Statement s = connection.createStatement();
-            r = s.executeQuery(query);
+        s = query1.statement(query);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return r;
+        return s;
     }
 
     public void delete(String query){
-        Statement s = null;
-        try {
-            s = connection.createStatement();
-            s.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
+        try{
+            //statement
+            SQLUpdate query1=new SQLUpdate(con);
+            query1.statement(query);
+        }catch(Exception e){                                  //catch exception if occurred
+            System.out.println(e.getMessage());                        //print exception message
         }
     }
 
     public void insert(String query){
-        try {
-            Statement s = connection.createStatement();
-            System.out.println(query);
-            s.executeUpdate(query);
-        } catch (Exception e) {
-            e.printStackTrace();
+        try{
+            SQLUpdate query1=new SQLUpdate(con);
+            query1.statement(query);
+        }catch(Exception e){                                  //catch exception if occurred
+            System.out.println(e.getMessage());                        //print exception message
         }
     }
 
     public void disconnect(){
         try {
-            connection.close();
+//            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.vogella.jersey.first.database;
 
+import armdb.QueryResult;
 import com.vogella.jersey.first.Model.User;
 
 import java.sql.ResultSet;
@@ -15,27 +16,27 @@ public class LoginDatabase extends DatabaseHelper {
             return null;
         }else {
             connect();
-            ResultSet s = select("select * from werknemers");
+            QueryResult s = select("select * from werknemers");
             User user;
             System.out.println("start");
             try {
-                while (s.next()){
-                    if (username.equals(s.getString("username"))){
-                        if (password.equals(s.getString("wachtwoord"))){
-                            int id = s.getInt("id");
-                            String voornaam = s.getString("voornaam");
-                            String achternaam = s.getString("achternaam");
-                            String functie = s.getString("functie");
-                            String geboorteDatum = s.getString("geboorteD");
-                            String email = s.getString("email");
-                            String adres = s.getString("adres");
-                            String aangenomen = s.getString("aangenomen");
+                while (s.nextFlag()){
+                    if (username.equals(s.getValue("username"))){
+                        if (password.equals(s.getValue("wachtwoord"))){
+                            int id = Integer.parseInt(s.getValue("id"));
+                            String voornaam = s.getValue("voornaam");
+                            String achternaam = s.getValue("achternaam");
+                            String functie = s.getValue("functie");
+                            String geboorteDatum = s.getValue("geboorteD");
+                            String email = s.getValue("email");
+                            String adres = s.getValue("adres");
+                            String aangenomen = s.getValue("aangenomen");
 
                             return new User(id, username, voornaam , achternaam, functie, geboorteDatum, email, adres, aangenomen, password);
                         }
                     }
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             } disconnect();
         }

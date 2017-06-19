@@ -1,5 +1,6 @@
 package com.vogella.jersey.first.database;
 
+import armdb.QueryResult;
 import com.vogella.jersey.first.Model.Inroostering;
 
 import java.sql.Array;
@@ -14,12 +15,12 @@ public class RoosterDatabase extends DatabaseHelper {
     public ArrayList<Inroostering> getRooster(int id) {
         ArrayList<Inroostering> rooster = new ArrayList<Inroostering>();
         connect();
-        ResultSet s = select(String.format("select * from inroostering where medewerkerId = %d", id));
+        QueryResult s = select(String.format("select * from inroostering where medewerkerId = %d", id));
         try {
-            while (s.next()) {
-                rooster.add(new Inroostering(s.getString("tijdB"), s.getString("tijdE")));
+            while (s.nextFlag()) {
+                rooster.add(new Inroostering(s.getValue("tijdB"), s.getValue("tijdE")));
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         disconnect();
