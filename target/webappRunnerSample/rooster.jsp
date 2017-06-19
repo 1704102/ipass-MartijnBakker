@@ -102,7 +102,7 @@
         <div>Tuesday</div>
         <div>Wednessday</div>
         <div>Tuesday</div>
-        <div>Fryday</div>
+        <div>Friday</div>
         <div>Saturday</div>
         <div>Sunday</div>
     </div>
