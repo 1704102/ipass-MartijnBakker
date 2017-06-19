@@ -34,11 +34,38 @@ public class InroosterDatabase extends DatabaseHelper{
 
     public ArrayList<Inroostering> getRooster(String date1,String date2){
         ArrayList<Inroostering> rooster = new ArrayList();
-      QueryResult s = select("SELECT * FROM `inroostering` WHERE ( tijdB BETWEEN '2017-06-01' AND '2017-06-29')");
+      QueryResult s = select(String.format("SELECT * FROM `inroostering` WHERE ( tijdB BETWEEN \"%s\" AND \"%s\")", date1,date2));
         while (s.nextFlag()) {
             rooster.add(new Inroostering(Integer.parseInt(s.getValue("medewerkerId")), s.getValue("tijdB").replace(":00", ""), s.getValue("tijdE").replace(":00", "")));
         }
       return rooster;
     }
+    public Inroostering getSpRooster(String date, int id){
+        String[] split = date.split("-");
+        if(Integer.parseInt(split[1]) < 10){
+            split[1] = "0" + split[1];
+        }
+        String date1 = split[0] + "-" + split[1] + "-" + split[2] + "%";
+        QueryResult s = select(String.format("SELECT * FROM `inroostering` WHERE ( tijdB like \"%s\") and medewerkerId = %d", date1, id));
+        Inroostering rooster = null;
+        while (s.nextFlag()) {
+            rooster = new Inroostering(Integer.parseInt(s.getValue("medewerkerId")), s.getValue("tijdB").replace(":00", ""), s.getValue("tijdE").replace(":00", ""));
+        }
+        return rooster;
+    }
+
+    public void saveInroostering(int id, String date1, String date2){
+        connect();
+        String[] split = date1.split(" ");
+        split[0] = split[0] + "%";
+        String[] split2 = split[0].split("-");
+        if(Integer.parseInt(split2[1]) < 10){
+            split2[1] = "0" + split2[1];
+        }
+        String date = split2[0] + "-" + split2[1] + "-" + split2[2] + "%";
+        delete(String.format("delete from inroostering where tijdB like \"%s\"", date));
+        insert(String.format("insert into inroostering values (%d, \"%s\", \"%s\")", id, date1, date2));
+    }
+
 
 }

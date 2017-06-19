@@ -13,6 +13,7 @@ day = 0;
 function setDate() {
     $("#date").empty();
     var Smonth = month_of_year[month];
+    date2 = new Date(date);
     date2.setDate(date2.getDate() + 6);
     $("#date").append(date.getFullYear() + " " + month_of_year[date.getMonth()] + " " + date.getDate() + " - "+ month_of_year[date2.getMonth()] + date2.getDate());
 }
@@ -20,6 +21,7 @@ function setDate() {
 function next() {
     date.setDate(date.getDate() + 7);
     setDate();
+    createTable()
 }
 
 function makeCalender() {
@@ -35,6 +37,7 @@ function makeCalender() {
 function previous() {
     date.setDate(date.getDate() - 7);
     setDate();
+    createTable()
 }
 
 function createTable() {
@@ -45,13 +48,13 @@ function createTable() {
             var user = data[dat];
             $("#table").append("<tr><td>" + user.name + "</td><td>" +
                 "<div class='week'>" +
-                "<div id='Monday_" + user.id + "'>M</div>" +
-                "<div id='Tuesday_" + user.id + "'>T</div>" +
-                "<div id='Wednessday_" + user.id + "'>W</div>" +
-                "<div id='Thusday_" + user.id + "'>T</div>" +
-                "<div id='Vryday_" + user.id + "'>V</div>" +
-                "<div id='Saturday_" + user.id + "'>S</div>" +
-                "<div id='Sunday_" + user.id + "'>S</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ parseInt(date.getDate()) + "-" + user.id + "'>M</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 1)) + "-" + user.id + "'>T</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 2)) + "-"  + user.id + "'>W</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 3)) + "-"  + user.id + "'>T</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 4)) + "-"  + user.id + "'>F</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 5)) + "-"  + user.id + "'>S</div>" +
+                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 6)) + "-"  + user.id + "'>S</div>" +
                 "</div>"
                 + "</td></tr>");
         }
@@ -61,6 +64,56 @@ function createTable() {
 }
 
 function filltable() {
-        console.log(date);
-        console.log(date2);
+    dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date.getDate();
+    dateE = date2.getFullYear() + "-" + (parseInt(date2.getMonth()) + 1) + "-" + date2.getDate();
+    $.get("http://localhost:8080/rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
+        console.log(data);
+        console.log(dateB);
+        console.log(dateE);
+        for(dat in data){
+            inroostering = data[dat];
+            $("#" + inroostering.timeB_day +"-"+ inroostering.id).css("background-color", "blue");
+            $("#" + inroostering.timeB_day +"-"+ inroostering.id).prop("title",(inroostering.timeB_time + " - " + inroostering.timeE_time));
+        }
+    });
+}
+
+function setEditDiv(event) {
+    $("#editHeader").empty();
+    $("#editTime").empty();
+    $("#timeB").val("");
+    $("#timeE").val("");
+    var a = event.target.id;
+    var data = a.split("-")
+    var date1 = data[0];
+    var id = data[1];
+    sessionStorage.setItem("id", id);
+    $("#id").append(id);
+    console.log(id);
+    $.get("http://localhost:8080/rest/inrooster/" + id, function (data) {
+        console.log(data);
+        $("#editHeader").append(data[0].name);
+        $("#editTime").append(date1 + " " + month_of_year[date.getMonth()] + " " + date.getFullYear());
+    });
+    dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date1;
+    sessionStorage.setItem("time", dateB);
+    $.get("http://localhost:8080/rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
+        $("#timeB").val(data[0].timeB_time);
+        $("#timeE").val(data[0].timeE_time);
+    })
+}
+
+function saveData() {
+    var id = sessionStorage.getItem("id");
+    var date1 = sessionStorage.getItem("time");
+    var time1 = $("#timeB").val();
+    var time2 = $("#timeE").val();
+    dateC1 = date1 + " " + time1+":00";
+    dateC2 = date1 + " " + time2+":00";
+
+    $.ajax({
+        url: "http://localhost:8080/rest/inrooster/save/" + id + "/" + dateC1 + "/" + dateC2    ,
+        type: 'put',
+        dataType: 'text'
+    });
 }

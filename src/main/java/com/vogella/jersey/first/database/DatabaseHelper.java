@@ -35,6 +35,7 @@ public class DatabaseHelper {
     }
 
     public QueryResult select(String query){
+        connect();
         SQLQuery query1=new SQLQuery(con);
         QueryResult s = null;
         try {

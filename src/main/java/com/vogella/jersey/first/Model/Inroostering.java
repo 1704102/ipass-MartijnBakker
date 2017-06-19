@@ -61,4 +61,8 @@ public class Inroostering {
     public String getDateE_time() {
         return dateE_time;
     }
+
+    public int getId() {
+        return id;
+    }
 }
