@@ -1,10 +1,8 @@
 package com.vogella.jersey.first;
 
 import com.vogella.jersey.first.Model.Beschikbaarheid;
-import com.vogella.jersey.first.Model.Inroostering;
 import com.vogella.jersey.first.database.BeschikbaarheidDatabase;
-import com.vogella.jersey.first.database.RoosterDatabase;
-import jdk.nashorn.internal.parser.JSONParser;
+
 
 import javax.json.*;
 import javax.ws.rs.*;

@@ -4,7 +4,6 @@ import com.vogella.jersey.first.Model.Inroostering;
 import com.vogella.jersey.first.Model.User;
 import com.vogella.jersey.first.database.InroosterDatabase;
 import com.vogella.jersey.first.database.LoginDatabase;
-import com.vogella.jersey.first.database.RoosterDatabase;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -12,7 +11,6 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
