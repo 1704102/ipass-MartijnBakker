@@ -69,7 +69,7 @@ function filltable() {
     $.get("rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
         for(dat in data){
             inroostering = data[dat];
-            $("#" + inroostering.timeB_day +"-"+ inroostering.id).css("background-color", "blue");
+            $("#" + inroostering.timeB_day +"-"+ inroostering.id).css("background-color", "#70A3C1");
             $("#" + inroostering.timeB_day +"-"+ inroostering.id).prop("title",(inroostering.timeB_time + " - " + inroostering.timeE_time));
         }
     });
@@ -87,11 +87,10 @@ function setEditDiv(event) {
     var id = data[1];
     sessionStorage.setItem("id", id);
     $("#id").append(id);
-    console.log(id);
     $.get("rest/inrooster/" + id, function (data) {
         console.log(data);
         $("#editHeader").append(data[0].name);
-        $("#editTime").append(date1 + " " + month_of_year[date.getMonth()] + " " + date.getFullYear());
+        $("#editTime").append(days_of_the_week[date.getDay()] + " " + date1 + " " + month_of_year[date.getMonth()] + " " + date.getFullYear());
     });
     dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date1;
     sessionStorage.setItem("time", dateB);

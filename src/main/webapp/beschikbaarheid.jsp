@@ -4,10 +4,15 @@
     <script src="script/rooster.js"></script>
     <link type="text/css" rel="stylesheet" href="css/template.css">
     <style>
-        #beschikbaarheidTable {
-            display: table;
-            margin: auto;
-            background-color: white;
+        .frame {
+            display: block;
+            border-radius: 10%;
+            padding: 10px;
+            background-color: #878787;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .day {
@@ -60,19 +65,22 @@
 </div>
 
 <div id="content">
-    <div id="beschikbaarheidTable">
-        <script>
-            user = JSON.parse(sessionStorage.getItem("login"));
-            $.get("rest/beschikbaarheid/" + user.id, function (data) {
-                for (var dat in data) {
-                    $("#beschikbaarheidTable").append("<div class='bRow'><div class='day'>" + data[dat].day +
-                        "</div><div><input id='" + data[dat].day + "-timeB' type='text' value='" + data[dat].timeB + "'>" + "</div>" +
-                        "<div class='token'>" + "  -  " +
-                        "</div><div><input id='" + data[dat].day + "-timeE' type='text' value='" + data[dat].timeE + "'>" + "</div>" + "</div>");
-                }
-            })
-        </script>
-        <input type="button" value="save" onclick="save()">
+    <div class="frame" style="display:block;">
+        <div id="beschikbaarheidTable">
+            <script>
+                user = JSON.parse(sessionStorage.getItem("login"));
+                $.get("rest/beschikbaarheid/" + user.id, function (data) {
+                    for (var dat in data) {
+                        $("#beschikbaarheidTable").append("<div class='bRow'><div class='day'>" + data[dat].day +
+                            "</div><div><input id='" + data[dat].day + "-timeB' type='text' value='" + data[dat].timeB + "'>" + "</div>" +
+                            "<div class='token'>" + "  -  " +
+                            "</div><div><input id='" + data[dat].day + "-timeE' type='text' value='" + data[dat].timeE + "'>" + "</div>" + "</div>");
+                    }
+                })
+            </script>
+
+        </div>
+        <input style="display: block; margin: auto" type="button" value="save" onclick="save()">
     </div>
 </div>
 

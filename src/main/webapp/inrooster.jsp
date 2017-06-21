@@ -9,6 +9,18 @@
             background-color: white;
         }
 
+        #table{
+            position: relative;
+            top: 20px;
+            background-color: #cecece;
+        }
+
+        #inroosterBlock{
+            position: relative;
+            top: 20px;
+            background-color: #cecece;
+        }
+
         #previous {
             display: inline-block;
             width: 80px;
@@ -21,8 +33,11 @@
             height: 20px;
         }
 
+        .content{
+            background-color: #cecece;
+        }
         #topbar {
-            width: 853px;
+            width: 81.24%;
             height: 20px;
             background: white;
             display: table;
@@ -74,17 +89,14 @@
 </div>
 
 <div class="content">
-    <div style="display:block;">
-        <div style="display: inline-block; background-color: #878787; text-align: center; width: 100%">
-            Beschikbaar
-        </div>
+    <div style="display:block; background-color: #cecece; width: 100%">
         <div id="topbar"><input type="button" id="previous" value="previous" onclick="previous()">
             <div id="date"></div>
             <input id="next" type="button" value="next" onclick="next()"></div>
     </div>
     <table style="float: left; display:inline-block;" id="table">
     </table>
-    <div id="inroosterBlock" style="float: left;display: none; background-color: #878787; text-align: center;">
+    <div id="inroosterBlock" style="float: left;display: none; text-align: center;">
         <div style="display:inline-block; float: left">
             <div style="display:block; text-align: center" id="editHeader"></div>
             <div style="display: block;text-align: center" id="editTime"></div>

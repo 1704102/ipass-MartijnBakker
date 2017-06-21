@@ -37,7 +37,7 @@
 </div>
 
 <div class="content">
-   <table id="Reserveringen">
+   <table id="Reserveringen" style="position: relative; top: 20px; background-color: #cecece; border-radius: 10%; padding: 10px;">
 
         <script> $.get("rest/reserveren", function (data) {
             $("#Reserveringen").append("" +

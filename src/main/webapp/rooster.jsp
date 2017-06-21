@@ -21,6 +21,15 @@
             margin: auto;
         }
 
+        #table {
+            position: relative;
+            top:50px;
+            background-color: #cecece;
+            display: block;
+            border-radius: 10%;
+            padding: 30px;
+        }
+
         #date {
             display: block;
             background-color: white;
@@ -30,41 +39,50 @@
             display: table;
             margin: auto;
         }
-        #topbar{
-            width: 853px;
+
+        #topbar {
+            width: 80%px;
             height: 20px;
-            background: white;
-            display: table;
-            margin:auto;
-        }
-        #previous{
-            display: inline-block;
-            width: 80px;
-            height:20px;
-        }
-        #next{
-            display: inline-block;
-            width: 80px;
-            height:20px;
-        }
-        #topbar div{
-            text-align: center;
-            display: inline-block;
-            width:  652.8px;
-            height: 20px;
-        }
-        #Calender{
-            background-color: #878787; ;
-            display: table;
-            margin:auto;
-        }
-        .days{
             background-color: #878787;
             display: table;
-            margin:auto;
+            margin: auto;
         }
-        .days div{
-            width: 118px;
+
+        #previous {
+            float: left;
+            width: 100px;
+            height: 20px;
+        }
+
+        #next {
+            float: right;
+            width: 100px;
+            height: 20px;
+        }
+
+        #topbar div {
+            text-align: center;
+            display: inline-block;
+            width: 652.8px;
+            height: 20px;
+        }
+
+        #Calender {
+            background-color: #878787;;
+            display: table;
+            margin: auto;
+        }
+
+        .days {
+            background-color: #878787;
+            display: table;
+            margin: auto;
+        }
+
+        .days div {
+            text-align: center;
+            border: 1px solid black;
+            width: 120px;
             display: inline-block;
         }
     </style>
@@ -97,22 +115,22 @@
     <div id="table">
         <div id="topbar"><input type="button" id="previous" value="previous" onclick="previousCalender()">
             <div id="date"></div>
-            <input id="next" type="button" value="next" onclick="nextCalender()"></div>
-    </div>
-    <div class="days">
-        <div>Monday</div>
-        <div>Tuesday</div>
-        <div>Wednessday</div>
-        <div>Tuesday</div>
-        <div>Friday</div>
-        <div>Saturday</div>
-        <div>Sunday</div>
-    </div>
-    <div id="Calender"></div>
-    <script>makeCalender()</script>
-</div>
-</div>
+            <input id="next" type="button" value="next" onclick="nextCalender()">
+        </div>
 
+        <div class="days">
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednessday</div>
+            <div>Tuesday</div>
+            <div>Friday</div>
+            <div>Saturday</div>
+            <div>Sunday</div>
+        </div>
+        <div id="Calender"></div>
+        <script>makeCalender()</script>
+    </div>
+</div>
 <script>
     function changePage(page) {
         document.location.href = page;

@@ -1,11 +1,15 @@
-body{
-    background-color: grey;
-}
 .form{
+    padding:10px;
+    background-color: #b3b3b3;
+    border-radius: 10%;
     margin: auto;
     width: 420px;
-    display: block;
+    display: table;
     border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .form div label{
     width: 200px;
