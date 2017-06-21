@@ -2,30 +2,43 @@
 <head>
     <script src="script/jquery-3.2.1.min.js"></script>
     <link type="text/css" rel="stylesheet" href="css/template.css">
+    <style>
+        .worker{
+            border-radius: 10%;
+            padding: 10px;
+            background-color: #878787;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
 <div class="header">
     <div class="headerBlock">
-        <div class="Rosetti"><h1>Rosetti</h1></div>
-        <div class="Logout" onclick="logout()">logout</div>
+        <div class="Rosetti"></div>
     </div>
-
-    <div id="hrefBlock" class="hrefBlock">
-        <div onclick="changePage('worker.jsp')">Home</div>
-        <div onclick="changePage('rooster.jsp')">Rooster</div>
-        <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
-        <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
-        <script>
-            var user = JSON.parse(sessionStorage.getItem("login"));
-            if(user.functie == "administrator"){
-                $("#inrooster").css("display", "inline-block");
-            }
-        </script>
+    <div style="background-color: #cecece">
+        <div class="hrefBlock">
+            <div class="selected" onclick="changePage('worker.jsp')">Home</div>
+            <div onclick="changePage('rooster.jsp')">Rooster</div>
+            <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+            <div onclick="changePage('Reserveringen.jsp')">Reserveringen</div>
+            <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
+            <script>
+                var user = JSON.parse(sessionStorage.getItem("login"));
+                if (user.functie == "administrator") {
+                    $("#inrooster").css("display", "inline-block");
+                }
+            </script>
+            <div class="Logout" onclick="logout()">logout</div>
+        </div>
     </div>
 </div>
 
 <div class="content">
-    <div id="worker">
+    <div id="worker" class="worker">
         <div id="workerLeft">
             <div>naam</div>
             <div>functie</div>

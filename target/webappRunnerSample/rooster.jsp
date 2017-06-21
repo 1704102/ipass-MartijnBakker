@@ -73,21 +73,23 @@
 
 <div class="header">
     <div class="headerBlock">
-        <div class="Rosetti"><h1>Rosetti</h1></div>
-        <div class="Logout" onclick="logout()">logout</div>
+        <div class="Rosetti"></div>
     </div>
-
-    <div class="hrefBlock">
-        <div onclick="changePage('worker.jsp')">Home</div>
-        <div onclick="changePage('rooster.jsp')">Rooster</div>
-        <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
-        <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
-        <script>
-            var user = JSON.parse(sessionStorage.getItem("login"));
-            if(user.functie == "administrator"){
-                $("#inrooster").css("display", "inline-block");
-            }
-        </script>
+    <div style="background-color: #cecece">
+        <div class="hrefBlock">
+            <div onclick="changePage('worker.jsp')">Home</div>
+            <div class="selected" onclick="changePage('rooster.jsp')">Rooster</div>
+            <div onclick="changePage('beschikbaarheid.jsp')">Beschikbaarheid</div>
+            <div onclick="changePage('Reserveringen.jsp')">Reserveringen</div>
+            <div id="inrooster" style="display: none" onclick="changePage('inrooster.jsp')">Inroosteren</div>
+            <script>
+                var user = JSON.parse(sessionStorage.getItem("login"));
+                if (user.functie == "administrator") {
+                    $("#inrooster").css("display", "inline-block");
+                }
+            </script>
+            <div class="Logout" onclick="logout()">logout</div>
+        </div>
     </div>
 </div>
 

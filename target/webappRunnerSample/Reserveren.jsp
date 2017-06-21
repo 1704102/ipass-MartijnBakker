@@ -8,14 +8,15 @@
 <body>
 <div class="header">
     <div class="headerBlock">
-        <div class="Rosetti"><h1>Rosetti</h1></div>
-        <div class="login" onclick="changePage('login.jsp')">Login</div>
+        <div class="Rosetti"></div>
+
     </div>
-
-    <div class="hrefBlock">
-        <div onclick="changePage('index.jsp')">Home</div>
-
-        <div onclick="changePage('Reserveren.jsp')">reserveren</div>
+    <div style="background-color: #cecece">
+        <div class="hrefBlock">
+            <div onclick="changePage('index.jsp')">Home</div>
+            <div class="selected" onclick="changePage('Reserveren.jsp')">reserveren</div>
+            <div onclick="changePage('login.jsp')">Login</div>
+        </div>
     </div>
 </div>
 <form class="form">
@@ -29,9 +30,9 @@
         <label>Tijd</label>
     </div>
     <div style="display: inline-block;">
-        <textarea id='voornaam' name="voornaam" placeholder="voornaam"></textarea>
-        <textarea id="achternaam" name="achternaam" placeholder="achternaam"></textarea>
-        <textarea id="mail" name="email" placeholder="email"></textarea>
+        <input type="text" id='voornaam' name="voornaam" placeholder="voornaam">
+        <input type="text" id="achternaam" name="achternaam" placeholder="achternaam">
+        <input type="text" id="mail" name="email" placeholder="email">
         <select id="personen" name="personen">
             <script>
                 for (var i = 1; i < 21; i++) {
@@ -80,7 +81,7 @@
     function postData() {
         var data = $("#voornaam").val() + "," + $("#achternaam").val() + "," + $("#mail").val() + "," + $("#personen").val() + "," + $("#date").val() + "," + $("#time").val();
         $.ajax({
-            url: "http://localhost:8080/rest/reserveren/" + data,
+            url: "rest/reserveren/" + data,
             type: 'put',
             dataType: 'text'
         });

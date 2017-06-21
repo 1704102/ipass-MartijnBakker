@@ -76,7 +76,7 @@ function filltable() {
 }
 
 function setEditDiv(event) {
-    $("#inroosterBlock").css("display", "inline-block");
+    $("#inroosterBlock").css("display", "inline-block   ");
     $("#editHeader").empty();
     $("#editTime").empty();
     $("#timeB").val("");
@@ -98,6 +98,26 @@ function setEditDiv(event) {
     $.get("rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
         $("#timeB").val(data[0].timeB_time);
         $("#timeE").val(data[0].timeE_time);
+    })
+
+    getBeschikbaarheid(id);
+}
+
+function getBeschikbaarheid(id) {
+    $.get("rest/beschikbaarheid/" + id, function (data) {
+        $("#beschikbaarheid").empty();
+        $("#beschikbaarheid").append("<div style='display:block; text-align: center'>Beschikbaarheid</div>");
+        for(dat in data){
+            beschikbaarheid = data[dat];
+            $("#beschikbaarheid").append(
+                "<div style='display: block'>" +
+                "<div style='display: inline-block; width: 100;'>"+ beschikbaarheid.day +"</div>" +
+                "<div style='display: inline-block; width: 100;'>"+ beschikbaarheid.timeB +"</div>" +
+                "<div style='display: inline-block; width: 100;'>"+ beschikbaarheid.timeE +"</div>" +
+                "</div>"
+
+            );
+        }
     })
 }
 

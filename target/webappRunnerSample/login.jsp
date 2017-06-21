@@ -7,14 +7,14 @@
 
 <div class="header">
     <div class="headerBlock">
-        <div class="Rosetti"><h1>Rosetti</h1></div>
-        <div class="login" onclick="changePage('login.jsp')">Login</div>
+        <div class="Rosetti"></div>
     </div>
-
-    <div class="hrefBlock">
-        <div onclick="changePage('index.jsp')">Home</div>
-
-        <div onclick="changePage('Reserveren.jsp')">reserveren</div>
+    <div style="background-color: #cecece">
+        <div class="hrefBlock">
+            <div onclick="changePage('index.jsp')">Home</div>
+            <div onclick="changePage('Reserveren.jsp')">reserveren</div>
+            <div class="selected" onclick="changePage('login.jsp')">Login</div>
+        </div>
     </div>
 </div>
 <script>if (sessionStorage.getItem("login") != null) {
@@ -36,7 +36,7 @@
         </div>
         <div id="error" style="color:red; display: none;"> wrong input</div>
 
-        <input id="login" type="button" value="login" onclick="login()">
+        <input style="display: block; position: relative; left: 105px; width: 100px" id="login" type="button" value="login" onclick="login()">
     </div>
 </div>
 

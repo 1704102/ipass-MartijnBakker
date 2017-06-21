@@ -1,36 +1,11 @@
-body{
-   background-color: #fff95e;
-}
-
 .header{
-    background-image: url("images/Rosetti.jpg");
     display: table;
     width: 100%;
     margin: auto;
 }
-.login{
-    display: inline-block;
-    background: -webkit-linear-gradient(top, #fff95e, #ff1831);
-    background: -o-linear-gradient(top, #fff95e, #ff1831);
-    background: -moz-linear-gradient(top, #fff95e, #ff1831);
-    background: linear-gradient(top, #fff95e, #ff1831);
-    padding: 5px 15px 5px 15px;
-    border-radius: 20px;
-}
 
-.login:hover{
-    cursor: pointer;
-}
-
-.logout{
-    float: right;
-    display: inline-block;
-    background: -webkit-linear-gradient(top, #fff95e, #ff1831);
-    background: -o-linear-gradient(top, #fff95e, #ff1831);
-    background: -moz-linear-gradient(top, #fff95e, #ff1831);
-    background: linear-gradient(top, #fff95e, #ff1831);
-    padding: 5px 15px 5px 15px;
-    border-radius: 20px;
+.headerBlock{
+    text-align: center;
 }
 
 .logout:hover{
@@ -38,41 +13,46 @@ body{
 }
 
 .Rosetti{
-    text-align: center;
-    display: inline-block;
-    width: 60%;
+    display: block;
+    background-image: url("images/rossetti.png");
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 80px;
+    margin: auto;
 }
 .hrefBlock{
     display: table;
-    width: 80%;
     margin: auto    ;
-    background: -webkit-linear-gradient(left, #ff990c, #ff0009);
-    background: -o-linear-gradient(right, #ff990c, #ff0009);
-    background: -moz-linear-gradient(right, #ff990c, #ff0009);
-    background: linear-gradient(right, #ff990c, #ff0009);
+    background-color: #b3b3b3;
 
 }
 .hrefBlock div{
     display: inline-block;
     text-align: center;
     padding: 10px;
-    margin: 3px;
 }
-
+.selected{
+    background-color: #e6e6e6;
+}
 .hrefBlock div:hover{
-    background-color: white;
+    background-color: #e6e6e6;
     cursor: pointer;
 }
 
 .content{
-    background-color: #8e8889;
     width: 80%;
+    min-height: 500px;
     margin: auto;
 }
 
 #loginBlock{
-    display: table;
-    margin: 0 auto;
+    background-color: #8e8889;
+    border-radius: 10%;
+    padding:10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #loginLeft{
@@ -91,12 +71,6 @@ body{
 #loginRight input{
     display: block;
     width: 100px;
-}
-
-#login{
-    float: right;
-    display: block;
-    width: 200px;
 }
 
 #workerLeft{
