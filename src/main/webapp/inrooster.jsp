@@ -82,7 +82,7 @@
     </div>
     <table style="display:inline-block;" id="table">
     </table>
-    <div style="display: inline-block; background-color: #878787; text-align: center;">
+    <div id="inroosterBlock" style="display: none; background-color: #878787; text-align: center;">
         <div style="display:block; text-align: center" id="editHeader"></div>
         <div style="display: block;text-align: center" id="editTime"></div>
         <div id="editValues">
@@ -92,6 +92,7 @@
             <div style="display: none" id="id"></div>
         </div>
         <input style="display: block; width: 100%" type="button" value="save" onclick="saveData()">
+    </div>
 </div>
 
 <script>

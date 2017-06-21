@@ -43,7 +43,7 @@ function previous() {
 function createTable() {
     $("#table").empty();
     $("#table").append("<tr><th>werknemer</th><th>inroostering</th></tr>");
-    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/employees", function (data) {
+    $.get("rest/inrooster/employees", function (data) {
         for(var dat in data){
             var user = data[dat];
             $("#table").append("<tr><td>" + user.name + "</td><td>" +
@@ -58,18 +58,15 @@ function createTable() {
                 "</div>"
                 + "</td></tr>");
         }
+        filltable();
+    });
 
-    })
-    filltable();
 }
 
 function filltable() {
     dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date.getDate();
-    dateE = date2.getFullYear() + "-" + (parseInt(date2.getMonth()) + 1) + "-" + date2.getDate();
-    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
-        console.log(data);
-        console.log(dateB);
-        console.log(dateE);
+    dateE = date2.getFullYear() + "-" + (parseInt(date2.getMonth()) + 1) + "-" + (parseInt(date2.getDate()) + 1);
+    $.get("rest/inrooster/rooster/" + dateB + "/" + dateE,function (data) {
         for(dat in data){
             inroostering = data[dat];
             $("#" + inroostering.timeB_day +"-"+ inroostering.id).css("background-color", "blue");
@@ -79,25 +76,26 @@ function filltable() {
 }
 
 function setEditDiv(event) {
+    $("#inroosterBlock").css("display", "inline-block");
     $("#editHeader").empty();
     $("#editTime").empty();
     $("#timeB").val("");
     $("#timeE").val("");
     var a = event.target.id;
-    var data = a.split("-")
+    var data = a.split("-");
     var date1 = data[0];
     var id = data[1];
     sessionStorage.setItem("id", id);
     $("#id").append(id);
     console.log(id);
-    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/" + id, function (data) {
+    $.get("rest/inrooster/" + id, function (data) {
         console.log(data);
         $("#editHeader").append(data[0].name);
         $("#editTime").append(date1 + " " + month_of_year[date.getMonth()] + " " + date.getFullYear());
     });
     dateB =date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1)+ "-" + date1;
     sessionStorage.setItem("time", dateB);
-    $.get("https://ipassmartijnbakker.herokuapp.com/rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
+    $.get("rest/inrooster/employee/"+ dateB + "/" + id, function (data) {
         $("#timeB").val(data[0].timeB_time);
         $("#timeE").val(data[0].timeE_time);
     })
@@ -112,8 +110,10 @@ function saveData() {
     dateC2 = date1 + " " + time2+":00";
 
     $.ajax({
-        url: "https://ipassmartijnbakker.herokuapp.com/rest/inrooster/save/" + id + "/" + dateC1 + "/" + dateC2    ,
+        url: "rest/inrooster/save/" + id + "/" + dateC1 + "/" + dateC2    ,
         type: 'put',
         dataType: 'text'
     });
+    $("#inroosterBlock").css("display", "none");
+    createTable()
 }

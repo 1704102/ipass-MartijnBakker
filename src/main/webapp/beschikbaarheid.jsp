@@ -56,7 +56,7 @@
     <div id="beschikbaarheidTable">
         <script>
             user = JSON.parse(sessionStorage.getItem("login"));
-            $.get("https://ipassmartijnbakker.herokuapp.com/rest/beschikbaarheid/" + user.id, function (data) {
+            $.get("rest/beschikbaarheid/" + user.id, function (data) {
                 for (var dat in data) {
                     $("#beschikbaarheidTable").append("<div class='bRow'><div class='day'>" + data[dat].day +
                         "</div><div><input id='"+ data[dat].day + "-timeB' type='text' value='" + data[dat].timeB + "'>" + "</div>" +
@@ -95,7 +95,7 @@
         data += "]";
         var user = JSON.parse(sessionStorage.getItem("login"));
         $.ajax({
-            url: "https://ipassmartijnbakker.herokuapp.com/rest/beschikbaarheid/save/" + data + "/" + user.id,
+            url: "rest/beschikbaarheid/save/" + data + "/" + user.id,
             type: 'put',
             dataType: 'text'
         });

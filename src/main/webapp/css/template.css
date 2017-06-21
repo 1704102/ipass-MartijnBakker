@@ -1,14 +1,11 @@
 body{
-    background-image: url("images/Rosetti.jpg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+   background-color: #fff95e;
 }
 
 .header{
+    background-image: url("images/Rosetti.jpg");
     display: table;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 .login{
@@ -26,6 +23,7 @@ body{
 }
 
 .logout{
+    float: right;
     display: inline-block;
     background: -webkit-linear-gradient(top, #fff95e, #ff1831);
     background: -o-linear-gradient(top, #fff95e, #ff1831);
@@ -46,7 +44,7 @@ body{
 }
 .hrefBlock{
     display: table;
-    width: 100%;
+    width: 80%;
     margin: auto    ;
     background: -webkit-linear-gradient(left, #ff990c, #ff0009);
     background: -o-linear-gradient(right, #ff990c, #ff0009);
@@ -96,6 +94,7 @@ body{
 }
 
 #login{
+    float: right;
     display: block;
     width: 200px;
 }

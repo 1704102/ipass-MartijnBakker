@@ -8,7 +8,7 @@ function getRooster() {
     var rooster;
     user = JSON.parse(sessionStorage.getItem("login"));
     $.ajax({
-        url: "https://ipassmartijnbakker.herokuapp.com/rest/rooster/" + user.id,
+        url: "rest/rooster/" + user.id,
         type: 'get',
         dataType: 'json',
         async: false,

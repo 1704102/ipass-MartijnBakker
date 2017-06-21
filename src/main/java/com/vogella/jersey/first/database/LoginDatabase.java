@@ -1,6 +1,6 @@
 package com.vogella.jersey.first.database;
 
-import armdb.QueryResult;
+
 import com.vogella.jersey.first.Model.User;
 
 import java.sql.ResultSet;
@@ -15,59 +15,56 @@ public class LoginDatabase extends DatabaseHelper {
         if (username.equals("") || password.equals("")) {
             return null;
         } else {
-            connect();
-            QueryResult s = select("select * from werknemers");
+            ResultSet s = select("select * from werknemers");
             User user;
             System.out.println("start");
             try {
-                while (s.nextFlag()) {
-                    if (username.equals(s.getValue("username"))) {
-                        if (password.equals(s.getValue("wachtwoord"))) {
-                            int id = Integer.parseInt(s.getValue("id"));
-                            String voornaam = s.getValue("voornaam");
-                            String achternaam = s.getValue("achternaam");
-                            String functie = s.getValue("functie");
-                            String geboorteDatum = s.getValue("geboorteD");
-                            String email = s.getValue("email");
-                            String adres = s.getValue("adres");
-                            String aangenomen = s.getValue("aangenomen");
+                while (s.next()) {
+                    if (username.equals(s.getString("username"))) {
+                        if (password.equals(s.getString("wachtwoord"))) {
+                            int id = s.getInt("id");
+                            String voornaam = s.getString("voornaam");
+                            String achternaam = s.getString("achternaam");
+                            String functie = s.getString("functie");
+                            String geboorteDatum = s.getString("geboorteD");
+                            String email = s.getString("email");
+                            String adres = s.getString("adres");
+                            String aangenomen = s.getString("aangenomen");
 
                             return new User(id, username, voornaam, achternaam, functie, geboorteDatum, email, adres, aangenomen, password);
                         }
                     }
                 }
+                disconnect();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            disconnect();
         }
         return null;
     }
 
     public User getUser(int id1) {
-        connect();
-        QueryResult s = select(String.format("select * from werknemers where id = %s", id1));
+        ResultSet s = select(String.format("select * from werknemers where id = %s", id1));
         User user = null;
         try {
-            while (s.nextFlag()) {
-                int id = Integer.parseInt(s.getValue("id"));
-                String username = s.getValue("username");
-                String voornaam = s.getValue("voornaam");
-                String achternaam = s.getValue("achternaam");
-                String functie = s.getValue("functie");
-                String geboorteDatum = s.getValue("geboorteD");
-                String email = s.getValue("email");
-                String adres = s.getValue("adres");
-                String aangenomen = s.getValue("aangenomen");
-                String password = s.getValue("wachtwoord");
+            while (s.next()) {
+                int id = s.getInt("id");
+                String username = s.getString("username");
+                String voornaam = s.getString("voornaam");
+                String achternaam = s.getString("achternaam");
+                String functie = s.getString("functie");
+                String geboorteDatum = s.getString("geboorteD");
+                String email = s.getString("email");
+                String adres = s.getString("adres");
+                String aangenomen = s.getString("aangenomen");
+                String password = s.getString("wachtwoord");
                 user = new User(id, username, voornaam, achternaam, functie, geboorteDatum, email, adres, aangenomen, password);
             }
-
+        disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        disconnect();
         return user;
     }
 }
