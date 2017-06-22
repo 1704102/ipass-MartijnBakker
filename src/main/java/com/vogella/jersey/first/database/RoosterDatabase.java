@@ -14,9 +14,14 @@ public class RoosterDatabase extends DatabaseHelper {
     public ArrayList<Inroostering> getRooster(int id) {
         ArrayList<Inroostering> rooster = new ArrayList<Inroostering>();
         ResultSet s = select(String.format("select * from inroostering where medewerkerId = %d", id));
+
         try {
             while (s.next()) {
-                rooster.add(new Inroostering(s.getInt("medewerkerId"), s.getString("tijdB").replace(":00", ""), s.getString("tijdE").replace(":00", "")));
+                String date1 = s.getString("tijdB");
+                String date2 = s.getString("tijdE");
+                String dB = date1.substring(0, date1.length() - 5);
+                String dE = date2.substring(0, date2.length() - 5);
+                rooster.add(new Inroostering(s.getInt("medewerkerId"),dB, dE ));
             }
             disconnect();
         } catch (Exception e) {

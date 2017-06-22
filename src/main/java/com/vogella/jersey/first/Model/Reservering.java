@@ -10,6 +10,8 @@ public class Reservering {
     private int count;
     private String name;
     private String email;
+    private String dateS;
+    private String time;
 
     public Reservering(int table, String date, int count, String name, String email) {
         this.table = table;
@@ -17,6 +19,10 @@ public class Reservering {
         this.count = count;
         this.name = name;
         this.email = email;
+
+        String[] s = date.split(" ");
+        dateS = s[0];
+        time = s[1];
     }
 
     public int getTable() {
@@ -37,5 +43,13 @@ public class Reservering {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDateS() {
+        return dateS;
+    }
+
+    public String getTime() {
+        return time;
     }
 }
