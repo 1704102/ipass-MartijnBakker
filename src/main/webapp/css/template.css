@@ -14,10 +14,10 @@
 
 .Rosetti{
     display: block;
-    background-image: url("images/rossetti.png");
+    background-image: url("images/rosetti.png");
     background-repeat: no-repeat;
-    width: 300px;
-    height: 80px;
+    width: 400px;
+    height: 180px;
     margin: auto;
 }
 .hrefBlock{

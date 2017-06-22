@@ -61,8 +61,10 @@
     </div>
     <div style="display: block;"></div>
 
-    <input type="button" name="submit" value="submit" onclick="postData()"/>
+    <input style="display: block" type="button" name="submit" value="submit" onclick="postData()"/>
+    <div style="display: block" id="message"></div>
 </form>
+
 
 <script type="text/javascript">
     var date = new Date();
@@ -79,12 +81,25 @@
 </script>
 <script>
     function postData() {
-        var data = $("#voornaam").val() + "," + $("#achternaam").val() + "," + $("#mail").val() + "," + $("#personen").val() + "," + $("#date").val() + "," + $("#time").val();
-        $.ajax({
-            url: "rest/reserveren/" + data,
-            type: 'put',
-            dataType: 'text'
-        });
+        $("#message").empty();
+        if ($("#voornaam").val() == "" || $("#achternaam").val() == "" || $("#mail").val() == "" || $("#personen").val() == "" || $("#date").val() == "" || $("#time").val() == "") {
+            $("#message").append('<div style="display: block; color:red">vul alle velden in </div>')
+        } else {
+            var data = $("#voornaam").val() + "," + $("#achternaam").val() + "," + $("#mail").val() + "," + $("#personen").val() + "," + $("#date").val() + "," + $("#time").val();
+            $.ajax({
+                url: "rest/reserveren/" + data,
+                type: 'put',
+                dataType: 'text',
+                success: function (data) {
+                    if (data == "succes") {
+                        $("#message").append('<div style="display: block; color:green">reservering verwerkt </div>')
+                    } else if (data == "error") {
+                        $("#message").append('<div style="display: block; color:red">alle tafels zijn bezet of er zijn niet genoeg plaatsen </div>')
+                    }
+                }
+
+            });
+        }
     }
     function logout() {
         sessionStorage.removeItem("login")
