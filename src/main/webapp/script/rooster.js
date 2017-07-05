@@ -60,11 +60,15 @@ function makeCalender() {
             calender.append("</div>");
             calender.append("<div class='row'>");
         }
+        input = ((i - d.getDay()) + 1);
+        if(parseInt(input) < 10){
+            input = "0" + input;
+        }
         calender.append(
             "<div class='tableSquare'>" +
             "<div class='dateHeader'>" +
             ((i - d.getDay()) + 1)
-            + "</div><div class='time' id='calender" + ((i - d.getDay()) + 1) + "'></div>"
+            + "</div><div class='time' id='calender" + input + "'></div>"
             + "</div>")
     }
     for (data in rooster) {

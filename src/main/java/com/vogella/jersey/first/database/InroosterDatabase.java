@@ -78,15 +78,26 @@ public class InroosterDatabase extends DatabaseHelper {
 
     public void saveInroostering(int id, String date1, String date2) {
         System.out.println(date1.length() + "-" + date2.length());
+        System.out.println(date1);
+        System.out.println(date2);
         String[] split = date1.split(" ");
-        split[0] = split[0] + "%";
         String[] split2 = split[0].split("-");
+        System.out.println("pass");
         if (Integer.parseInt(split2[1]) < 10) {
             split2[1] = "0" + split2[1];
         }
+        System.out.println(split2[2]);
+        if (Integer.parseInt(split2[2]) < 10) {
+            split2[2] = "0" + split2[2];
+        }
+        split2[2] = split2[2] + "%";
+        System.out.println(date1.length() + "-" + date2.length());
+        System.out.println(date1);
+        System.out.println(date2);
         String date = split2[0] + "-" + split2[1] + "-" + split2[2] + "%";
         delete(String.format("delete from inroostering where medewerkerId = %d and tijdB like \"%s\"", id, date));
-            if(date1.length() == 18 && date2.length() == 18) {
+            if(date1.length() >= 17 && date2.length() >= 17) {
+                System.out.println(String.format("insert into inroostering values (%d, \"%s\", \"%s\")", id, date1, date2));
                 insert(String.format("insert into inroostering values (%d, \"%s\", \"%s\")", id, date1, date2));
             }
 

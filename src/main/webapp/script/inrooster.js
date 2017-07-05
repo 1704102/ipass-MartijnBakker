@@ -41,22 +41,21 @@ function previous() {
 }
 
 function createTable() {
+    dateIn = ["M", "T", "W", "T", "F", "S", "S"];
     $("#table").empty();
     $("#table").append("<tr><th>werknemer</th><th>inroostering</th></tr>");
     $.get("rest/inrooster/employees", function (data) {
         for(var dat in data){
             var user = data[dat];
-            $("#table").append("<tr><td>" + user.name + "</td><td>" +
-                "<div class='week'>" +
-                "<div onclick='setEditDiv(event)' id='"+ parseInt(date.getDate()) + "-" + user.id + "'>M</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 1)) + "-" + user.id + "'>T</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 2)) + "-"  + user.id + "'>W</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 3)) + "-"  + user.id + "'>T</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 4)) + "-"  + user.id + "'>F</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 5)) + "-"  + user.id + "'>S</div>" +
-                "<div onclick='setEditDiv(event)' id='"+ (parseInt(date.getDate() + 6)) + "-"  + user.id + "'>S</div>" +
-                "</div>"
-                + "</td></tr>");
+            $("#table").append("<tr><td>" + user.name + "</td><td>" +  "<div class='week'>");
+            for(var i = 0; i < 7; i++) {
+                var input = (parseInt(date.getDate() + i));
+                if(input < 10){
+                    input = 0 + input;
+                }
+                $("#table").append("<div onclick='setEditDiv(event)' id='" + input + "-" + user.id + "'>" + dateIn[i] + "</div>");
+            }
+            $("#table").append("</div>" + "</td></tr>");
         }
         filltable();
     });

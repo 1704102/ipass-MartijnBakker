@@ -21,6 +21,8 @@ public class RoosterDatabase extends DatabaseHelper {
                 String date2 = s.getString("tijdE");
                 String dB = date1.substring(0, date1.length() - 5);
                 String dE = date2.substring(0, date2.length() - 5);
+                System.out.println(dB);
+                System.out.println(dE);
                 rooster.add(new Inroostering(s.getInt("medewerkerId"),dB, dE ));
             }
             disconnect();
