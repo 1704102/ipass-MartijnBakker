@@ -47,14 +47,16 @@ function createTable() {
     $.get("rest/inrooster/employees", function (data) {
         for(var dat in data){
             var user = data[dat];
-            $("#table").append("<tr><td>" + user.name + "</td><td>" +  "<div class='week'>");
+            $("#table").append("<tr><td>" + user.name + "</td><td>" +  "<div class='week" + user.id + "'>");
             for(var i = 0; i < 7; i++) {
                 var input = (parseInt(date.getDate() + i));
                 if(input < 10){
-                    input = 0 + input;
+                    input = "0"  + input;
                 }
-                $("#table").append("<div onclick='setEditDiv(event)' id='" + input + "-" + user.id + "'>" + dateIn[i] + "</div>");
+                console.log("start add")
+                $(".week" + user.id).append("<div onclick='setEditDiv(event)' id='" + input + "-" + user.id + "'>" + dateIn[i] + "</div>");
             }
+            console.log("end")
             $("#table").append("</div>" + "</td></tr>");
         }
         filltable();

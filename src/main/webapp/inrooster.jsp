@@ -51,11 +51,11 @@
             height: 20px;
         }
 
-        .week {
+        table tr td div {
             display: inline-block;
         }
 
-        .week div {
+        table tr td div div {
             text-align: center;
             width: 20px;
             height: 20px;
