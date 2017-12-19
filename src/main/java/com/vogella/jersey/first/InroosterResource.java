@@ -23,6 +23,7 @@ public class InroosterResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public String getEmployees(){
+        System.out.println("call");
         InroosterDatabase dat = new InroosterDatabase();
         ArrayList<User> employees = dat.getAllEmployees();
         JsonArrayBuilder jab = Json.createArrayBuilder();
@@ -33,7 +34,11 @@ public class InroosterResource {
             job.add("functie", employees.get(i).getFunctie());
             jab.add(job);
         }
-
+        JsonObjectBuilder job = Json.createObjectBuilder();
+        job.add("id", "1");
+        job.add("name", "martijn Bakker");
+        job.add("functie", "admin");
+        jab.add(job);
         JsonArray array = jab.build();
         return array.toString();
     }
